@@ -1,0 +1,4 @@
+/fontend/node_modules
+/backend/node_modules
+/backend/package-lock.json
+/fontend/package-lock.json

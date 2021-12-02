@@ -1,0 +1,38 @@
+.container-profile {
+  width: 100%;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 5px;
+  //box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+.title-profile {
+  font-size: 25px;
+  font-weight: 500;
+  position: relative;
+}
+.title-profile::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 30px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+.profile-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+}
+
+.input-box-profile {
+  margin-bottom: 15px;
+  width: calc(100% / 2 - 20px);
+}
+.span.details {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
