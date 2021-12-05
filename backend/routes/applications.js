@@ -97,7 +97,7 @@ router.get("/byapplicant/:applicantid", (req, res) => {
     });
 });
 
-//for recruiter to accept reject
+//for recruiter to accept reject : RECRUITER USE CASE
 router.put("/:id", auth, async function (req, res) {
   const id = req.params.id;
   const { status } = req.body;

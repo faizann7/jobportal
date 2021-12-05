@@ -59,7 +59,7 @@ const Navbar = () => {
                 <Link to="/myjobs">My Jobs</Link>
               </li>
               <li>
-                <Link to="/profile">Profile</Link>
+                <Link to="/acceptedemployees">Accepted</Link>
               </li>
 
               <Avatar height={30} />
