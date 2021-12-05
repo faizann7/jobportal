@@ -103,7 +103,7 @@ router.put("/:id", verify, async (req, res) => {
   }
 });
 
-// Get a recruiter
+// Get an applicant
 router.get("/:id", verify, (req, res) => {
   if (req.params.id === req.user.id) {
     const id = req.params.id;

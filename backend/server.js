@@ -41,7 +41,7 @@ mongoose
 
 //app.use("/api/auth", auth);
 app.get("/", (req, res) => {
-  res.send("workinga");
+  res.send("working");
 });
 app.use("/api/recruiter", recruiter);
 app.use("/api/applicant", applicant);

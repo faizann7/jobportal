@@ -85,6 +85,18 @@ router.get("/viewapplications/:id", (req, res) => {
     });
 });
 
+//get applications by applicantId - APPLICANT USE CASE.
+//WHERE I HAVE APPLIED.
+router.get("/byapplicant/:applicantid", (req, res) => {
+  const applicantId = req.params.applicantid;
+  Application.find({ applicantId: applicantId })
+    .lean()
+    .then((applications) => res.json({ applications }))
+    .catch((err) => {
+      return res.sendStatus(400);
+    });
+});
+
 //for recruiter to accept reject
 router.put("/:id", auth, async function (req, res) {
   const id = req.params.id;
@@ -127,6 +139,42 @@ router.put("/:id", auth, async function (req, res) {
     application.closeDate = Date.now();
   const updatedApplication = await application.save();
   res.json({ application: updatedApplication });
+});
+
+// APPLICANTS ACCEPTED BY THE RECRUITER : RECRUITER USE CASE
+router.get("/byrecruiter/:id", async function (req, res) {
+  try {
+    const id = req.params.id;
+    let jobs = await Job.find({ "user.id": id });
+    const jobIds = jobs.map((job) => job.id);
+    let applications = await Application.find({
+      jobId: { $in: jobIds },
+    });
+    applications = applications.filter(
+      (application) => application.status === "Accepted"
+    );
+    const acceptedIds = applications.map(
+      (application) => application.applicantId
+    );
+    let applicants = await Applicant.find({ _id: { $in: acceptedIds } });
+    applicants = applicants.map((applicant) => {
+      let application = applications.find(
+        (application) => application.applicantId == applicant.id
+      );
+      let job = jobs.find((l) => l.id == application.jobId);
+      return {
+        id: applicant.id,
+        name: applicant.username,
+        jobtype: job.type,
+        jobtitle: job.title,
+        joiningDate: application.closeDate,
+      };
+    });
+    return res.json({ applicants });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ msg: "Internal error" });
+  }
 });
 
 module.exports = router;
