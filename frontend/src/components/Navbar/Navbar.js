@@ -100,7 +100,10 @@ const Navbar = () => {
                 <Link to="/about">About</Link>
               </li>
               <li>
-                <Link to="/profile">Profile</Link>
+                <Link to="/myapplications">My Applications</Link>
+              </li>
+              <li>
+                <Link to="/profile">{user.username}</Link>
               </li>
 
               <Avatar height={30} />

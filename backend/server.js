@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const auth = require("./routes/auth");
 const recruiter = require("./routes/recruiter");
 const applicant = require("./routes/applicant");
 const jobs = require("./routes/jobs");

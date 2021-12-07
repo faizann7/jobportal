@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Navbar from "../../components/Navbar/Navbar";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 const Regsiter = () => {
   const [username, setUsername] = useState("");
@@ -112,7 +113,9 @@ const Regsiter = () => {
                 <div class="button-login">
                   <input type="submit" value="Register" />
                 </div>
-                <p>Already have an account? Login!</p>
+                <p>
+                  Already have an account? <Link to="/login">Login!</Link>
+                </p>
               </div>
             </form>
           </div>

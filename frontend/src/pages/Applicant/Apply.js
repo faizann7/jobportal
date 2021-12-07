@@ -8,35 +8,6 @@ const Apply = () => {
   const { id } = useParams();
 
   let token = localStorage.getItem("token");
-  //   let userId = "61a50be0f86ab3cd01fd5a8c";
-  //   const apply = (e) => {
-  //     e.preventDefault();
-  //     // const app = {
-  //     //   applicantId: userId,
-  //     //   coverLetter,
-  //     // };
-  //     //console.log(app);
-  //     axios({
-  //       method: "POST",
-  //       url: API_URL,
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${token}`,
-  //         Accept: "application/json",
-  //         data: {
-  //           applicantId: "61a50be0f86ab3cd01fd5a8c",
-  //           coverLetter: "guygybyfyt",
-  //         },
-  //       },
-  //     })
-  //       .then((response) => {
-  //         console.log(response);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   };
-
   let userId = localStorage.getItem("userId");
   const submit = async (e) => {
     e.preventDefault();

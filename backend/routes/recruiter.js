@@ -19,17 +19,19 @@ router.post("/register", async (req, res) => {
     let { email, password, username, contactNumber } = req.body;
 
     if (!email || !password)
-      return res.status(400).json({ msg: "Not all fields have been entered." });
-    if (password.length < 5)
       return res
         .status(400)
-        .json({ msg: "The password needs to be at least 5 characters long." });
+        .json({ message: "Not all fields have been entered." });
+    if (password.length < 5)
+      return res.status(400).json({
+        message: "The password needs to be at least 5 characters long.",
+      });
 
     const existingUser = await Recruiter.findOne({ email: email });
     if (existingUser)
       return res
         .status(400)
-        .json({ msg: "An account with this email already exists." });
+        .json({ message: "An account with this email already exists." });
 
     if (!username) username = email;
 
@@ -45,8 +47,8 @@ router.post("/register", async (req, res) => {
     newUser.companyURL = "";
     newUser.companyDescription = "";
     newUser.location = "";
-    const savedUser = await newUser.save();
-    res.json(savedUser);
+    const data = await newUser.save();
+    res.json({ message: "User Created Successfully", data });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -89,6 +91,7 @@ router.post("/login", async (req, res) => {
       //   isRecruiter: user.isRecruiter,
       //   token
       // },
+      message: "User Logged In Successfully!!",
       user,
       userType: "Recruiter",
       token,
@@ -115,10 +118,6 @@ router.put("/updateprofile/:id", verify, async (req, res) => {
   // } else {
   //   res.status(403).json("You can update only your account!");
   // }
-});
-
-router.get("/check", verify, (req, res) => {
-  res.send(req.user.username);
 });
 
 //update profile

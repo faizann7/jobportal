@@ -9,17 +9,19 @@ router.post("/register", async (req, res) => {
     let { email, password, username, contactNumber } = req.body;
 
     if (!email || !password)
-      return res.status(400).json({ msg: "Not all fields have been entered." });
-    if (password.length < 5)
       return res
         .status(400)
-        .json({ msg: "The password needs to be at least 5 characters long." });
+        .json({ message: "Not all fields have been entered." });
+    if (password.length < 5)
+      return res.status(400).json({
+        message: "The password needs to be at least 5 characters long.",
+      });
 
     const existingUser = await Applicant.findOne({ email: email });
     if (existingUser)
       return res
         .status(400)
-        .json({ msg: "An account with this email already exists." });
+        .json({ message: "An account with this email already exists." });
 
     if (!username) username = email;
 
@@ -34,8 +36,8 @@ router.post("/register", async (req, res) => {
     });
     newUser.skills = [];
     newUser.contactNumber = "";
-    const savedUser = await newUser.save();
-    res.json(savedUser);
+    const data = await newUser.save();
+    res.status(201).json({ message: "User Created Successfully", data });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -46,16 +48,19 @@ router.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password)
-      return res.status(400).json({ msg: "Not all fields have been entered." });
+      return res
+        .status(400)
+        .json({ message: "Not all fields have been entered." });
 
     const user = await Applicant.findOne({ email: email });
     if (!user)
       return res
         .status(400)
-        .json({ msg: "No account with this email has been registered." });
+        .json({ message: "No account with this email has been registered." });
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ msg: "Invalid credentials." });
+    if (!isMatch)
+      return res.status(400).json({ message: "Invalid credentials." });
 
     const token = jwt.sign(
       {
@@ -75,6 +80,7 @@ router.post("/login", async (req, res) => {
       //   isRecruiter: user.isRecruiter,
       //   token
       // },
+      message: "User Logged In Successfully!!",
       user,
       userType: "applicant",
       token,

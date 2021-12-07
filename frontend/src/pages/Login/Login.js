@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Login.scss";
 import Navbar from "../../components/Navbar/Navbar";
@@ -40,7 +41,7 @@ const Login = () => {
       }
     } catch (error) {
       console.log(error.response);
-      alert(error.response.data.msg);
+      alert(error.response.data.message);
       return error.response;
     }
   };
@@ -58,7 +59,7 @@ const Login = () => {
                 <div className="input-box-login">
                   <span>Email:</span>
                   <input
-                    type="text"
+                    type="email"
                     value={email}
                     placeholder="Email@gmail.com"
                     onChange={({ target }) => setEmail(target.value)}
@@ -94,7 +95,10 @@ const Login = () => {
                 <div class="button-login">
                   <input type="submit" value="Login" />
                 </div>
-                <p>Don't have an account? Sign Up!</p>
+
+                <p>
+                  Don't have an account? <Link to="/register"> Sign Up! </Link>
+                </p>
               </div>
             </form>
           </div>
