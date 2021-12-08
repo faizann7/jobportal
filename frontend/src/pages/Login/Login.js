@@ -3,7 +3,6 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Login.scss";
-import Navbar from "../../components/Navbar/Navbar";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -36,7 +35,6 @@ const Login = () => {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data.user));
         localStorage.setItem("userType", response.data.userType);
-
         navigate("/about");
       }
     } catch (error) {
@@ -48,7 +46,6 @@ const Login = () => {
 
   return (
     <>
-      <Navbar />
       <div className="container-login-screen">
         <div className="leftside"></div>
         <div className="container-login">

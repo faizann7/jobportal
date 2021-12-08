@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useParams } from "react-router";
-import Navbar from "../../components/Navbar/Navbar";
 
 const Apply = () => {
   const [coverLetter, setCoverLetter] = useState("");
@@ -42,7 +41,6 @@ const Apply = () => {
 
   return (
     <>
-      <Navbar />
       <div>
         <form onSubmit={submit}>
           <label>Cover Letter </label>

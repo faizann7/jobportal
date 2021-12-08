@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../../components/Navbar/Navbar";
 import Modal from "../../components/Modal/Modal";
 import "./Profile.scss";
 const Profile = () => {
@@ -31,7 +30,6 @@ const Profile = () => {
 
   return (
     <>
-      <Navbar />
       <Modal />
       <button
         onClick={(e) => {

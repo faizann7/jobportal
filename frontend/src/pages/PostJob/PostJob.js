@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState } from "react";
-import Navbar from "../../components/Navbar/Navbar";
 import "./postjob.scss";
 const defaultFormData = {
   deadlineDate: Date.now(),
@@ -75,9 +74,9 @@ const PostJob = () => {
       error.response.data.message && setError(error.response.data.message);
     }
   };
+
   return (
     <>
-      <Navbar />
       <div className="container">
         <div className="title">CREATE JOB POSTING</div>
         <div className="content-addjob">

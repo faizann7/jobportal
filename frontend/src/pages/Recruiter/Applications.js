@@ -9,7 +9,6 @@ import {
   Button,
 } from "@material-ui/core";
 import "./applicationstyle.scss";
-import Navbar from "../../components/Navbar/Navbar";
 import { Navigate, useNavigate, useParams } from "react-router";
 
 const Applications = () => {
@@ -196,7 +195,6 @@ const Applications = () => {
 
   return (
     <>
-      <Navbar />
       <div className="container">
         <div className="title">My Jobs</div>
         <div className="content-addjob">

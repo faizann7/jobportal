@@ -1,0 +1,97 @@
+.container-hero {
+  max-width: 90%;
+  margin: 0 auto;
+}
+.row {
+  display: flex;
+}
+
+.hero-body {
+  align-items: center;
+  margin-top: 30px;
+}
+
+.hero-body > * {
+  flex-basis: 100%;
+}
+
+.content-hero {
+  flex-wrap: wrap;
+  gap: 1.5em;
+}
+
+.main-heading {
+  font-size: 50px;
+  color: #1e78ff;
+  margin-top: 0;
+}
+
+.hero-span {
+  display: inline-block;
+  background-color: #cdf3ff;
+  transform: skew(-10deg);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.btn {
+  background-color: #1e78ff;
+  padding: 0.7em 1em;
+  color: #fff;
+  font-size: 20px;
+  text-transform: uppercase;
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+.jobhunt {
+  position: relative;
+  width: 450px;
+  height: 70%;
+  margin-left: 70px;
+}
+
+.boxContainer {
+  width: 535px;
+  height: 70px;
+  border: 1px solid #3980b9;
+  padding: 0px 10px;
+  border-radius: 10px;
+}
+
+.searchbox {
+  height: 80%;
+  width: 80%;
+  padding: 5px;
+  border-radius: 10px;
+  font-size: 18px;
+  color: #1e78ff;
+  font-weight: 500;
+  margin-top: 5px;
+  border: none;
+}
+
+.search-btn {
+  background-color: #1e78ff;
+  padding: 0.5em 0.4em;
+  color: #fff;
+  font-size: 20px;
+  text-transform: uppercase;
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+  text-decoration: none;
+  border: none;
+}
+
+@media screen and (max-width: 800px) {
+  .hero-body {
+    gap: 5em;
+    flex-wrap: wrap;
+  }
+
+  .content-hero {
+    justify-content: center;
+    align-items: center;
+  }
+}

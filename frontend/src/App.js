@@ -15,10 +15,13 @@ import Profile from "./pages/Profile/Profile";
 import Apply from "./pages/Applicant/Apply";
 import Applications from "./pages/Recruiter/Applications";
 import AcceptedEmployees from "./pages/Recruiter/AcceptedEmployees";
+import MyApplications from "./pages/Applicant/MyApplications";
+import Naavbar from "./components/Naavbar";
 
 function App() {
   return (
     <div className="App">
+      <Naavbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -34,6 +37,7 @@ function App() {
         <Route path="/applications/:id" element={<Applications />} />
         <Route path="/acceptedemployees" element={<AcceptedEmployees />} />
         <Route path="/apply/:id" element={<Apply />} />
+        <Route path="/myapplications/" element={<MyApplications />} />
       </Routes>
     </div>
   );

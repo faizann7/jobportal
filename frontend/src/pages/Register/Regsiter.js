@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Navbar from "../../components/Navbar/Navbar";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
@@ -49,7 +48,6 @@ const Regsiter = () => {
 
   return (
     <>
-      <Navbar />
       <div className="container-login-screen">
         <div className="leftside"></div>
         <div className="container-login">

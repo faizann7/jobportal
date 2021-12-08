@@ -11,7 +11,6 @@ import {
   MuiThemeProvider,
 } from "@material-ui/core";
 import "./applicationstyle.scss";
-import Navbar from "../../components/Navbar/Navbar";
 
 const AcceptedEmployees = () => {
   const [data, setData] = useState([]);
@@ -47,7 +46,6 @@ const AcceptedEmployees = () => {
   });
   return (
     <MuiThemeProvider theme={theme}>
-      <Navbar />
       <div className="container">
         <div className="title">Accepted Employees</div>
         <div className="content-addjob">

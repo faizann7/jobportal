@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../../components/Navbar/Navbar";
 import axios from "axios";
 import "./Jobdetails.scss";
 import { Link } from "react-router-dom";
@@ -39,7 +38,6 @@ const JobDetails = () => {
 
   return (
     <>
-      <Navbar />
       <div className="job-container">
         <div className="hamburger">
           <Link className="goback" to="/">

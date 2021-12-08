@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar/Navbar";
 
 const About = () => {
   const [user, setUser] = useState([]);
@@ -31,22 +30,33 @@ const About = () => {
     fetchUser();
   }, []);
 
-  return (
-    <div>
-      <Navbar />
-      <h3>username: {user.username}</h3>
-      <h3>Email: {user.email}</h3>
-      <h3>contactNumber: {user.contactNumber}</h3>
-      <h3>isRecruiter: {user.isRecruiter}</h3>
+  if (userType === "Recruiter") {
+    return (
+      <div>
+        <h3>username: {user.username}</h3>
+        <h3>Email: {user.email}</h3>
+        <h3>contactNumber: {user.contactNumber}</h3>
+        <h3>isRecruiter: {user.isRecruiter}</h3>
 
-      <h3>companyURL: {user.companyURL}</h3>
-      <h3>companyDescription: {user.companyDescription}</h3>
-      <h3>location: {user.location}</h3>
-      <button>
-        <Link to={`/editprofile/${userId}`}>EDIT PROFILE </Link>{" "}
-      </button>
-    </div>
-  );
+        <h3>companyURL: {user.companyURL}</h3>
+        <h3>companyDescription: {user.companyDescription}</h3>
+        <h3>location: {user.location}</h3>
+        <button>
+          <Link to={`/editprofile/${userId}`}>EDIT PROFILE </Link>{" "}
+        </button>
+      </div>
+    );
+  } else {
+    return (
+      <>
+        <h3>username: {user.username}</h3>
+        <h3>Email: {user.email}</h3>
+        <h3>contactNumber: {user.contactNumber}</h3>
+        <h3>Skills: {user.skills}</h3>
+        <h3>Education: {user.contactNumber}</h3>
+      </>
+    );
+  }
 };
 
 export default About;

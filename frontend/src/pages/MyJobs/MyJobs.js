@@ -10,7 +10,6 @@ import {
 } from "@material-ui/core";
 
 import { Link, useNavigate } from "react-router-dom";
-import Navbar from "../../components/Navbar/Navbar";
 import Modal from "../../components/Modal/Modal";
 const MyJobs = () => {
   let userId = localStorage.getItem("userId");
@@ -61,7 +60,6 @@ const MyJobs = () => {
 
   return (
     <div>
-      <Navbar />
       <div className="container">
         <div className="title">My Jobs</div>
         <div className="content-addjob">

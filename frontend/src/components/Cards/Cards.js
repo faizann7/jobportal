@@ -54,10 +54,15 @@ const Cards = () => {
               <p className="c"> {job.description}</p>
             </div>
 
-            <div className="job-div">
-              <input className="applybutton" value="Apply" />
+            <div className="job-div-1">
+              {/* <input className="cardbtn-1" value="Apply" /> */}
+              <Link className="cardbtn-1" to="#">
+                Apply
+              </Link>
               {/* <Link to={`/jobdetails/${job._id}`}>View Job </Link> */}
-              <Link to={`/jobdetails/${job._id}`}>View Job </Link>{" "}
+              <Link className="cardbtn-2" to={`/jobdetails/${job._id}`}>
+                View Job{" "}
+              </Link>{" "}
             </div>
           </div>
         ))}

@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import Navbar from "../../components/Navbar/Navbar";
 
 const UpdateJob = () => {
   const [maxPos, setMaxPos] = useState();
@@ -66,7 +65,6 @@ const UpdateJob = () => {
   };
   return (
     <>
-      <Navbar />
       <div className="container">
         <div className="title">UPDATE JOB POSTING</div>
         <div className="content-addjob">

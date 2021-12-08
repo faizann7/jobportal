@@ -8,7 +8,6 @@ import {
   TableBody,
   Button,
 } from "@material-ui/core";
-import Navbar from "../../components/Navbar/Navbar";
 
 const MyApplications = () => {
   const [data, setData] = useState([]);
@@ -32,7 +31,6 @@ const MyApplications = () => {
   }, []);
   return (
     <>
-      <Navbar />
       <div className="container">
         <div className="title">Accepted Employees</div>
         <div className="content-addjob">
