@@ -32,6 +32,44 @@ const About = () => {
     }
     fetchUser();
   }, []);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [contactNumber, setContactNumber] = useState("");
+  const [location, setLocation] = useState("");
+  const [companyURL, setCompanyURL] = useState("");
+  const [companyDescription, setCompanyDescription] = useState("");
+
+  const update = (e) => {
+    e.preventDefault();
+    const UPDATE_URL = `http://localhost:5000/api/recruiter/updateprofile/${userId}`;
+    const data = {};
+    if (name) data.name = name;
+    if (email) data.email = email;
+    if (location) data.location = location;
+    if (contactNumber) data.contactNumber = contactNumber;
+    if (companyURL) data.companyURL = companyURL;
+
+    axios({
+      method: "PUT",
+      url: UPDATE_URL,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json",
+      },
+      data: data,
+    })
+      .then((response) => {
+        console.log(response);
+
+        if (response.status === 200) {
+          alert("Profile Successfully Updated!");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   if (userType === "Recruiter") {
     return (
@@ -44,14 +82,18 @@ const About = () => {
           </div>
           <div class="raght">
             <h3>Profile Settings</h3>
-            <div className="fields">
+            <form onSubmit={update} className="fields">
               <Table>
                 <TableRow>
                   <TableCell align="center">
                     <div>Name</div>
                   </TableCell>
                   <TableCell align="center">
-                    <input className="aboutinput" placeholder={user.username} />
+                    <input
+                      className="aboutinput"
+                      placeholder={user.username}
+                      onChange={({ target }) => setName(target.value)}
+                    />
                   </TableCell>
                 </TableRow>
                 <TableRow>
@@ -59,7 +101,11 @@ const About = () => {
                     <div>Email</div>
                   </TableCell>
                   <TableCell align="center">
-                    <input className="aboutinput" placeholder={user.email} />
+                    <input
+                      className="aboutinput"
+                      placeholder={user.email}
+                      onChange={({ target }) => setEmail(target.value)}
+                    />
                   </TableCell>
                 </TableRow>
                 <TableRow>
@@ -67,7 +113,11 @@ const About = () => {
                     <div>Location</div>
                   </TableCell>
                   <TableCell align="center">
-                    <input className="aboutinput" placeholder={user.location} />
+                    <input
+                      className="aboutinput"
+                      placeholder={user.location}
+                      onChange={({ target }) => setLocation(target.value)}
+                    />
                   </TableCell>
                 </TableRow>
                 <TableRow>
@@ -78,6 +128,7 @@ const About = () => {
                     <input
                       className="aboutinput"
                       placeholder={user.contactNumber}
+                      onChange={({ target }) => setContactNumber(target.value)}
                     />
                   </TableCell>
                 </TableRow>
@@ -89,6 +140,7 @@ const About = () => {
                     <input
                       className="aboutinput"
                       placeholder={user.companyURL}
+                      onChange={({ target }) => setCompanyURL(target.value)}
                     />
                   </TableCell>
                 </TableRow>
@@ -97,34 +149,22 @@ const About = () => {
                     <div>Company Description</div>
                   </TableCell>
                   <TableCell align="center">
-                    <input
-                      className="aboutinput"
-                      placeholder={user.description}
+                    <textarea
+                      className="abouttext"
+                      placeholder={user.companyDescription}
+                      onChange={({ target }) =>
+                        setCompanyDescription(target.value)
+                      }
                     />
                   </TableCell>
                 </TableRow>
               </Table>
-            </div>
-            <button to="#" class="save-btn">
-              Save Profile
-            </button>
+              <button class="save-btn">Save Profile</button>
+            </form>
           </div>
           <div className="third"></div>
         </div>
       </>
-      // <div>
-      //   <h3>username: {user.username}</h3>
-      //   <h3>Email: {user.email}</h3>
-      //   <h3>contactNumber: {user.contactNumber}</h3>
-      //   <h3>isRecruiter: {user.isRecruiter}</h3>
-
-      //   <h3>companyURL: {user.companyURL}</h3>
-      //   <h3>companyDescription: {user.companyDescription}</h3>
-      //   <h3>location: {user.location}</h3>
-      //   <button>
-      //     <Link to={`/editprofile/${userId}`}>EDIT PROFILE </Link>{" "}
-      //   </button>
-      // </div>
     );
   } else {
     return (
