@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { BiMenuAltRight } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useNavigate } from "react-router";
 import "./Naavbar.scss";
 
@@ -41,9 +41,12 @@ const Naavbar = () => {
           <nav className="navigation row menulink">
             <ul class="row">
               <li>
-                <Link className="link" to="/">
+                <NavLink
+                  className={({ isActive }) => (isActive ? "active" : "link")}
+                  to="/"
+                >
                   Find Jobs
-                </Link>
+                </NavLink>
               </li>
               <li>
                 <Link className="link" to="/about">
