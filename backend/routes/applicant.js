@@ -90,7 +90,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.put("/:id", verify, async (req, res) => {
+router.put("/updateprofile/:id", verify, async (req, res) => {
   if (req.user.id === req.params.id) {
     try {
       const updatedUser = await Applicant.findByIdAndUpdate(

@@ -88,7 +88,7 @@ const Naavbar = () => {
       </div>
     );
   }
-  if (userType === "Applicant") {
+  if (userType === "applicant") {
     return (
       <div>
         <section className="container-nav row nav">
@@ -107,22 +107,18 @@ const Naavbar = () => {
               </li>
               <li>
                 <Link className="link" to="/about">
-                  About Us
+                  About
                 </Link>
               </li>
               <li>
                 <Link className="link" to="/login">
-                  Login
+                  My Jobs
                 </Link>
               </li>
+
               <li>
-                <Link className="nav-btn-1" to="/register">
-                  Sign Up
-                </Link>
-              </li>
-              <li>
-                <Link className="nav-btn-2" to="postjob">
-                  Post Job
+                <Link className="nav-btn-1" onClick={logout} to="#">
+                  Logout
                 </Link>
               </li>
             </ul>

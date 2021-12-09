@@ -38,16 +38,20 @@ const About = () => {
   const [location, setLocation] = useState("");
   const [companyURL, setCompanyURL] = useState("");
   const [companyDescription, setCompanyDescription] = useState("");
+  const [skills, setSkills] = useState([]);
+  const [education, setEducation] = useState([]);
 
   const update = (e) => {
     e.preventDefault();
-    const UPDATE_URL = `http://localhost:5000/api/recruiter/updateprofile/${userId}`;
+    const UPDATE_URL = `http://localhost:5000/api/${userType}/updateprofile/${userId}`;
     const data = {};
     if (name) data.name = name;
     if (email) data.email = email;
     if (location) data.location = location;
     if (contactNumber) data.contactNumber = contactNumber;
     if (companyURL) data.companyURL = companyURL;
+    if (skills) data.skills = skills;
+    if (education) data.education = education;
 
     axios({
       method: "PUT",
@@ -169,11 +173,93 @@ const About = () => {
   } else {
     return (
       <>
-        <h3>username: {user.username}</h3>
-        <h3>Email: {user.email}</h3>
-        <h3>contactNumber: {user.contactNumber}</h3>
-        <h3>Skills: {user.skills}</h3>
-        <h3>Education: {user.contactNumber}</h3>
+        <div class="container-about">
+          <div class="laft">
+            <Avatar className="avatar" />
+            <h2>{user.username}</h2>
+            <h5>{user.email}</h5>
+          </div>
+          <div class="raght">
+            <h3>Profile Settings</h3>
+            <form onSubmit={update} className="fields">
+              <Table>
+                <TableRow>
+                  <TableCell align="center">
+                    <div>Name</div>
+                  </TableCell>
+                  <TableCell align="center">
+                    <input
+                      className="aboutinput"
+                      placeholder={user.username}
+                      onChange={({ target }) => setName(target.value)}
+                    />
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell align="center">
+                    <div>Email</div>
+                  </TableCell>
+                  <TableCell align="center">
+                    <input
+                      className="aboutinput"
+                      placeholder={user.email}
+                      onChange={({ target }) => setEmail(target.value)}
+                    />
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell align="center">
+                    <div>Location</div>
+                  </TableCell>
+                  <TableCell align="center">
+                    <input
+                      className="aboutinput"
+                      placeholder={user.location}
+                      onChange={({ target }) => setLocation(target.value)}
+                    />
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell align="center">
+                    <div>Contact Number</div>
+                  </TableCell>
+                  <TableCell align="center">
+                    <input
+                      className="aboutinput"
+                      placeholder={user.contactNumber}
+                      onChange={({ target }) => setContactNumber(target.value)}
+                    />
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell align="center">
+                    <div>Skills</div>
+                  </TableCell>
+                  <TableCell align="center">
+                    <input
+                      className="aboutinput"
+                      placeholder={user.skills}
+                      onChange={({ target }) => setSkills(target.value)}
+                    />
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell align="center">
+                    <div>Education</div>
+                  </TableCell>
+                  <TableCell align="center">
+                    <textarea
+                      className="abouttext"
+                      placeholder={user.education}
+                    />
+                  </TableCell>
+                </TableRow>
+              </Table>
+              <button class="save-btn">Save Profile</button>
+            </form>
+          </div>
+          <div className="third"></div>
+        </div>
       </>
     );
   }
