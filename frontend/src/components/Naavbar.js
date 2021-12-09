@@ -5,6 +5,8 @@ import { Link, NavLink } from "react-router-dom";
 import { useNavigate } from "react-router";
 import "./Naavbar.scss";
 
+import { ReactComponent as Avatar } from "../avatar.svg";
+
 const Naavbar = () => {
   const [menuOpen, setMenuOpen] = useState(true);
 
@@ -96,9 +98,12 @@ const Naavbar = () => {
           <nav className="navigation row menulink">
             <ul class="row">
               <li>
-                <Link className="link" to="/">
+                <NavLink
+                  className={({ isActive }) => (isActive ? "active" : "link")}
+                  to="/"
+                >
                   Find Jobs
-                </Link>
+                </NavLink>
               </li>
               <li>
                 <Link className="link" to="/about">
@@ -142,9 +147,12 @@ const Naavbar = () => {
           <nav className="navigation row menulink">
             <ul class="row">
               <li>
-                <Link className="link" to="/">
+                <NavLink
+                  className={({ isActive }) => (isActive ? "active" : "link")}
+                  to="/"
+                >
                   Find Jobs
-                </Link>
+                </NavLink>
               </li>
               <li>
                 <Link className="link" to="/about">

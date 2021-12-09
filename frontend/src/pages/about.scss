@@ -1,0 +1,53 @@
+.container-about {
+  display: grid;
+  grid-template-columns: 25% 45% 30%;
+  grid-column-gap: 1em;
+  margin-top: 10px;
+}
+
+.laft {
+  height: 600px;
+  text-align: center;
+}
+.avatar {
+  height: 150px;
+  margin-top: 4em;
+  margin-bottom: 1em;
+}
+.raght {
+  margin-left: 10px;
+  border-left: 2px solid #ba68c8;
+  text-align: center;
+}
+
+.third {
+  border-left: 2px solid #ba68c8;
+}
+
+.aboutinput {
+  height: 45px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+
+.fields {
+  margin-left: 12px;
+}
+
+.save-btn {
+  margin-top: 10px;
+  background-color: #1e78ff;
+  padding: 0.4em 0.6em;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+  text-decoration: none;
+  border: none;
+}
