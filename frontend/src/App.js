@@ -17,6 +17,7 @@ import Applications from "./pages/Recruiter/Applications";
 import AcceptedEmployees from "./pages/Recruiter/AcceptedEmployees";
 import MyApplications from "./pages/Applicant/MyApplications";
 import Naavbar from "./components/Naavbar";
+import FindJobs from "./pages/FindJobs";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Naavbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/findjobs" element={<FindJobs />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/profile" element={<Profile />} />

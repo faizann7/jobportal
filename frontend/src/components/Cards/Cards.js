@@ -2,27 +2,51 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./cards.scss";
 import { Link } from "react-router-dom";
-
+import Pagination from "../Pagination/Pagination";
+import ReactPaginate from "react-paginate";
+import "../Pagination/pagination.scss";
 const Cards = () => {
   const [jobs, setJobs] = useState([]);
+  const [page, setPage] = useState(1);
 
-  const URL = "http://localhost:5000/api/jobs/getjobs";
+  const [changePage, setChangePage] = useState(1);
+
+  //const URL = "http://localhost:5000/api/jobs/getjobs";
+  //const URL = "http://localhost:5000/api/jobs/jobs?page=3";
 
   useEffect(() => {
-    getAllJobs();
+    getAllJobs(changePage);
   }, []);
-
-  const getAllJobs = () => {
+  const getAllJobs = (changePage) => {
     axios
-      .get(`${URL}`)
+      .get(`http://localhost:5000/api/jobs/jobs?page=${changePage}`)
       .then((response) => {
-        setJobs(response.data);
-        console.log(response.data);
+        setJobs(response.data.data);
+        console.log(response.data.data);
       })
       .catch((error) => {
         console.error(`Error ${error}`);
       });
   };
+  const handlePageClick = (data) => {
+    let c = data.selected + 1;
+
+    getAllJobs(c);
+    //console.log(data.selected);
+  };
+  console.log(changePage);
+
+  // const getAllJobs = (changePage) => {
+  //   axios
+  //     .get(`http://localhost:5000/api/jobs/jobs?page=${changePage}`)
+  //     .then((response) => {
+  //       setJobs(response.data.data);
+  //       console.log(response.data.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(`Error ${error}`);
+  //     });
+  // };
 
   const convertDate = (d) => {
     let date = new Date(d);
@@ -66,6 +90,20 @@ const Cards = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div className="divpage">
+        <ReactPaginate
+          previousLabel={"Previous"}
+          nextLabel={"Next"}
+          breakLabel={"..."}
+          pageCount={10}
+          onPageChange={handlePageClick}
+          //class names
+          containerClassName={"paginateBtn"}
+          previousLinkClassName="previousBtn"
+          nextLinkClassName="nextBtn"
+          activeClassName="paginationActive"
+        />
       </div>
     </>
   );

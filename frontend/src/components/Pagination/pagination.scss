@@ -1,0 +1,26 @@
+.paginateBtn {
+  width: 80%;
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+
+  a {
+    padding: 10px;
+    margin: 8px;
+    border-radius: 5px;
+    border: 1px solid #1a75e8;
+    color: #1a75e8;
+    cursor: pointer;
+  }
+
+  a:hover {
+    color: #fff;
+    background-color: #1a75e8;
+  }
+}
+
+.paginationActive a {
+  color: #fff;
+  background-color: #1a75e8;
+}

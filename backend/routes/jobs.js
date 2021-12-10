@@ -103,7 +103,6 @@ router.get("/jobs", async (req, res) => {
 
     if (id) {
       response = await Job.find({ _id: id }).lean();
-      console.log(response);
       if (response && response.length > 0) {
         return res.status(200).json({
           error: {
@@ -122,7 +121,7 @@ router.get("/jobs", async (req, res) => {
 
     //PAGINATION AFTER ALREADY FINDING THE JOBS.
     if (page) {
-      let pageLimit = 3;
+      let pageLimit = 6;
       page = parseInt(page);
       let start = (page - 1) * pageLimit;
       let end = page * pageLimit;

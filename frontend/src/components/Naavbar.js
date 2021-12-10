@@ -56,7 +56,7 @@ const Naavbar = () => {
                 </Link>
               </li>
               <li>
-                <Link className="link" to="/login">
+                <Link className="link" to="/findjobs">
                   My Jobs
                 </Link>
               </li>
@@ -92,7 +92,7 @@ const Naavbar = () => {
     return (
       <div>
         <section className="container-nav row nav">
-          <Link to="#" className="logo nav">
+          <Link to="/" className="logo nav">
             Job Portal
           </Link>
           <nav className="navigation row menulink">
@@ -100,7 +100,7 @@ const Naavbar = () => {
               <li>
                 <NavLink
                   className={({ isActive }) => (isActive ? "active" : "link")}
-                  to="/"
+                  to="/findjobs"
                 >
                   Find Jobs
                 </NavLink>
@@ -137,7 +137,7 @@ const Naavbar = () => {
     return (
       <div>
         <section className="container-nav row nav">
-          <Link to="#" className="logo nav">
+          <Link to="/" className="logo nav">
             Job Portal
           </Link>
           <nav className="navigation row menulink">
@@ -145,7 +145,7 @@ const Naavbar = () => {
               <li>
                 <NavLink
                   className={({ isActive }) => (isActive ? "active" : "link")}
-                  to="/"
+                  to="findjobs"
                 >
                   Find Jobs
                 </NavLink>

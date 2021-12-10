@@ -1,6 +1,6 @@
 .container-about {
   display: grid;
-  grid-template-columns: 25% 45% 30%;
+  grid-template-columns: 20% 45% 35%;
   grid-column-gap: 1em;
   margin-top: 10px;
 }
@@ -22,6 +22,8 @@
 
 .third {
   border-left: 2px solid #ba68c8;
+  text-align: center;
+  max-width: 90%;
 }
 
 .aboutinput {
@@ -60,4 +62,42 @@
   transition: 0.3s ease-in-out;
   text-decoration: none;
   border: none;
+}
+
+.container__data {
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+  column-gap: 1.5rem;
+}
+
+.container__title {
+  font-size: 0.938rem;
+  font-weight: 500;
+}
+
+.container__subtitle {
+  display: inline-block;
+  font-size: 0.813rem;
+  margin-bottom: 1rem;
+}
+
+.container__calender {
+  font-size: 1rem;
+  color: 250, 8%, 65%;
+}
+
+.container__rounder {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  background-color: blueviolet;
+  border-radius: 50px;
+}
+
+.container__line {
+  display: block;
+  width: 1px;
+  height: 100%;
+  background-color: blueviolet;
+  transform: translate(6px, -7px);
 }

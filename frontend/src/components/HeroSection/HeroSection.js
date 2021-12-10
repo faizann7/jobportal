@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as Jobhunt } from "./jobhunt.svg";
 import "./hero.scss";
+import Pagination from "../Pagination/Pagination";
 const HeroSection = () => {
   return (
     <div>

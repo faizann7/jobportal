@@ -258,7 +258,78 @@ const About = () => {
               <button class="save-btn">Save Profile</button>
             </form>
           </div>
-          <div className="third"></div>
+          <div className="third">
+            <div class="container__sections">
+              <div class="container__content">
+                <div class="container__data">
+                  <div>
+                    <h3 class="qcontainer__title">BS Computer Science </h3>
+                    <span class="container__subtitle">
+                      {" "}
+                      Institute of Business Administration, Karachi{" "}
+                    </span>
+
+                    <div class="container__calender">
+                      <i></i>
+                      2018 - 2022
+                    </div>
+                  </div>
+                  <div>
+                    <span class="container__rounder"></span>
+                    <span class="container__line"></span>
+                  </div>
+                </div>
+
+                <div class="container__data">
+                  <div></div>
+                  <div>
+                    <span class="container__rounder"></span>
+                    <span class="container__line"></span>
+                  </div>
+                  <div>
+                    <h3 class="qcontainer__title">FoodPanda</h3>
+                    <span class="container__subtitle"> Karachi, Pakistan</span>
+
+                    <div class="container__calender">
+                      <i></i>
+                      2021 Aug - Sep
+                    </div>
+                  </div>
+                </div>
+
+                <div class="container__data">
+                  <div>
+                    <h3 class="qcontainer__title">A Levels</h3>
+                    <span class="container__subtitle"> Cedar </span>
+
+                    <div class="container__calender">
+                      <i></i>
+                      2016 - 2017
+                    </div>
+                  </div>
+                  <div>
+                    <span class="container__rounder"></span>
+                    <span class="container__line"></span>
+                  </div>
+                </div>
+                <div class="container__data">
+                  <div></div>
+                  <div>
+                    <span class="container__rounder"></span>
+                  </div>
+                  <div>
+                    <h3 class="qcontainer__title">O Levels</h3>
+                    <span class="container__subtitle"> Cedar </span>
+
+                    <div class="container__calender">
+                      <i></i>
+                      2009 - 2014
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </>
     );
