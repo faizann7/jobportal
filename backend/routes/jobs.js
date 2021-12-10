@@ -59,13 +59,101 @@ router.post("/addjob", auth, async (req, res) => {
   // }
 });
 
+//QUERY SEARCH
+router.get("/jobs", async (req, res) => {
+  try {
+    let response;
+    let { title, type, location, page, id } = req.query;
+
+    // TITLE
+    if (title) {
+      response = await Job.find({ title }).lean();
+      if (response && response.length > 0) {
+        return res.status(200).json({
+          data: response,
+        });
+      } else {
+        throw "There's an error";
+      }
+    }
+
+    //JOB TYPE - FULL TIME - PART TIME - REMOTE
+    if (type) {
+      response = await Job.find({ type }).lean();
+      if (response && response.length > 0) {
+        return res.status(200).json({
+          data: response,
+        });
+      } else {
+        throw "There's an error";
+      }
+    }
+
+    //LOCATION
+    if (location) {
+      response = await Job.find({ location }).lean();
+      if (response && response.length > 0) {
+        return res.status(200).json({
+          data: response,
+        });
+      } else {
+        throw "There's an error";
+      }
+    }
+
+    if (id) {
+      response = await Job.find({ _id: id }).lean();
+      console.log(response);
+      if (response && response.length > 0) {
+        return res.status(200).json({
+          error: {
+            message: "no error",
+            code: "0",
+          },
+          data: response ?? "Something went wrong o.O",
+        });
+      } else {
+        throw "error";
+      }
+    }
+
+    //GETTING ALL THE JOBS FROM THE DATABASE.
+    response = await Job.find({}).lean();
+
+    //PAGINATION AFTER ALREADY FINDING THE JOBS.
+    if (page) {
+      let pageLimit = 3;
+      page = parseInt(page);
+      let start = (page - 1) * pageLimit;
+      let end = page * pageLimit;
+      let pagination = response.slice(start, end);
+
+      return res.status(200).json({
+        error: {
+          message: "no error",
+          code: "0",
+        },
+        data: pagination ?? "Something went wrong o.O",
+      });
+    }
+    if (response) {
+      res.status(200).json({
+        data: response,
+      });
+    } else {
+      throw "There's an error";
+    }
+  } catch (e) {
+    console.log(e);
+    res.status(401).json({
+      data: "",
+    });
+  }
+});
+
 //view all jobs even without auth
-router.get("/getjobs/:page", (req, res) => {
-  const resultperpage = 2;
-  const page = req.params.page;
+router.get("/getjobs", (req, res) => {
   Job.find({})
-    .skip(resultperpage * page - resultperpage)
-    .limit(resultperpage)
     .then((jobs) => {
       // res.status(200).json({
       //   status: "success",
