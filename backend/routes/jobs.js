@@ -60,8 +60,12 @@ router.post("/addjob", auth, async (req, res) => {
 });
 
 //view all jobs even without auth
-router.get("/getjobs", (req, res) => {
+router.get("/getjobs/:page", (req, res) => {
+  const resultperpage = 2;
+  const page = req.params.page;
   Job.find({})
+    .skip(resultperpage * page - resultperpage)
+    .limit(resultperpage)
     .then((jobs) => {
       // res.status(200).json({
       //   status: "success",
