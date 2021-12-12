@@ -121,7 +121,7 @@ router.get("/jobs", async (req, res) => {
 
     //PAGINATION AFTER ALREADY FINDING THE JOBS.
     if (page) {
-      let pageLimit = 6;
+      let pageLimit = 8;
       page = parseInt(page);
       let start = (page - 1) * pageLimit;
       let end = page * pageLimit;

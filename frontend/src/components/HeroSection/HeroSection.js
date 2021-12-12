@@ -11,7 +11,7 @@ const HeroSection = () => {
           <h2 className="main-heading">
             Find Your Dream Job <span className="hero-span">Fast!</span>
           </h2>
-          <Link to="#" class="btn">
+          <Link to="/findjobs" class="btn">
             Find Jobs
           </Link>
           <div class="boxContainer">

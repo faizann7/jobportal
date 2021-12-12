@@ -1,0 +1,14 @@
+.companyContainer {
+  padding: 15px;
+  background-color: #f6f6f6;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1em;
+  align-items: center;
+}
+.svg {
+  width: 60%;
+  height: 60%;
+  margin-left: 60px;
+}
