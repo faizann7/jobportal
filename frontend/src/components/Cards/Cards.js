@@ -22,7 +22,7 @@ const Cards = () => {
   //const URL = "http://localhost:5000/api/jobs/jobs?page=3";
 
   useEffect(() => {
-    getAllJobs(changePage);
+    // getAllJobs(changePage);
   }, []);
   const getAllJobs = (changePage) => {
     axios
@@ -44,7 +44,7 @@ const Cards = () => {
     getAllJobs(c);
     //console.log(data.selected);
   };
-  console.log(changePage);
+  //console.log(changePage);
 
   const convertDate = (d) => {
     let date = new Date(d);
@@ -61,7 +61,7 @@ const Cards = () => {
       )
       .then((response) => {
         setJobs(response.data.data);
-        console.log(response.data.data);
+        //console.log(response.data.data);
       })
       .catch((error) => {
         console.error(`Error ${error}`);
@@ -78,7 +78,7 @@ const Cards = () => {
       )
       .then((response) => {
         setJobs(response.data.data);
-        console.log(response.data.data);
+        //console.log(response.data.data);
       })
       .catch((error) => {
         console.error(`Error ${error}`);
@@ -86,6 +86,32 @@ const Cards = () => {
   };
 
   //const [dropdown, setDropdown] = useState("Lahore");
+
+  const [value, setValue] = useState("");
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  useEffect(() => {
+    console.log(value);
+    const ff = (v) => {
+      axios
+        .get(
+          `http://localhost:5000/api/jobs/jobs?page=${changePage}&location=${v}`
+          // `http://localhost:5000/api/jobs/jobs?page=${changePage}`
+        )
+        .then((response) => {
+          setJobs(response.data.data);
+          //console.log(response.data.data);
+        })
+        .catch((error) => {
+          console.error(`Error ${error}`);
+        });
+    };
+    ff(value);
+  }, [value]);
+
   return (
     <>
       <div>
@@ -110,6 +136,13 @@ const Cards = () => {
       <button type="button" onClick={() => searchFilter()}>
         submit
       </button>
+      <select value={value} onChange={handleChange}>
+        <option value="Karachi">Karachi</option>
+        <option value="Lahore">Lahore</option>
+        <option value="Islamabad">Islamabad</option>
+        <option value="">REMOVE FILTER</option>
+      </select>
+      <p>{`You selected ${value}`}</p>
       <div className="cards">
         {jobs.map((job) => (
           <div className="data-card">
