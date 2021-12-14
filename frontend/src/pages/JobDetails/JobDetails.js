@@ -40,7 +40,7 @@ const JobDetails = () => {
     <>
       <div className="job-container">
         <div className="hamburger">
-          <Link className="goback" to="/">
+          <Link className="goback" to="/findjobs">
             <span className="gobackicon">
               <BiArrowBack />
             </span>

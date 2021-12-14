@@ -251,3 +251,48 @@
 .divpage {
   margin-top: 30px;
 }
+
+.job-search {
+  border-radius: 5px;
+  width: 80%;
+  text-align: center;
+  margin: 0 auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 20px;
+  background-color: #5964e0;
+  margin-bottom: 10px;
+}
+
+.box {
+  height: 50px;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  input {
+    flex: 1;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    padding-left: 10px;
+  }
+  .dropdown {
+    flex: 1;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    padding-left: 10px;
+    cursor: pointer;
+  }
+  .searchBtn {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+}

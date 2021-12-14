@@ -2,24 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./cards.scss";
 import { Link } from "react-router-dom";
-import Pagination from "../Pagination/Pagination";
 import ReactPaginate from "react-paginate";
 import "../Pagination/pagination.scss";
-import Button from "@material-ui/core/Button";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import { ReactComponent as Careem } from "../../images/careem.svg";
 import daraz from "../../images/daraz.png";
+
+import { AiOutlineSearch } from "react-icons/ai";
+import { GrLocation } from "react-icons/gr";
 
 const Cards = () => {
   const [jobs, setJobs] = useState([]);
-  const [page, setPage] = useState(1);
 
   const [changePage, setChangePage] = useState(1);
-  const [location, setLocation] = useState("");
-
-  //const URL = "http://localhost:5000/api/jobs/getjobs";
-  //const URL = "http://localhost:5000/api/jobs/jobs?page=3";
 
   useEffect(() => {
     // getAllJobs(changePage);
@@ -46,18 +39,10 @@ const Cards = () => {
   };
   //console.log(changePage);
 
-  const convertDate = (d) => {
-    let date = new Date(d);
-    var options = { day: "numeric", month: "long" };
-    console.log(d.toLocaleDateString("en-UK", options));
-    //setPostingdate(d.toLocaleDateString("en-UK", options))
-  };
-
   const dropdownFunc = (city) => {
     axios
       .get(
         `http://localhost:5000/api/jobs/jobs?page=${changePage}&location=${city}`
-        // `http://localhost:5000/api/jobs/jobs?page=${changePage}`
       )
       .then((response) => {
         setJobs(response.data.data);
@@ -74,18 +59,14 @@ const Cards = () => {
     axios
       .get(
         `http://localhost:5000/api/jobs/jobs?page=${changePage}&title=${search}`
-        // `http://localhost:5000/api/jobs/jobs?page=${changePage}`
       )
       .then((response) => {
         setJobs(response.data.data);
-        //console.log(response.data.data);
       })
       .catch((error) => {
         console.error(`Error ${error}`);
       });
   };
-
-  //const [dropdown, setDropdown] = useState("Lahore");
 
   const [value, setValue] = useState("");
 
@@ -99,11 +80,9 @@ const Cards = () => {
       axios
         .get(
           `http://localhost:5000/api/jobs/jobs?page=${changePage}&location=${v}`
-          // `http://localhost:5000/api/jobs/jobs?page=${changePage}`
         )
         .then((response) => {
           setJobs(response.data.data);
-          //console.log(response.data.data);
         })
         .catch((error) => {
           console.error(`Error ${error}`);
@@ -114,35 +93,37 @@ const Cards = () => {
 
   return (
     <>
-      <div>
-        <h3>SHOWING JOBS FOR LOCATION: </h3>
-        {/* <select>
-            <option onClick={dropdownFunc("Karachi")} value="Karachi">
-              Karachi
-            </option>
-            <option onClick={dropdownFunc("Lahore")} value="Lahore">Lahore</option>
-            <option onClick={dropdownFunc("Islamabad")} value="Islamabad">Islamabad</option>
-          </select> */}
-        <button onClick={() => dropdownFunc("Karachi")}>karachi</button>
-        <button onClick={() => dropdownFunc("Lahore")}>lahore</button>
-        <button onClick={() => dropdownFunc("Islamabad")}>islamabad</button>
+      <div className="job-search">
+        <div class="box">
+          <AiOutlineSearch />
+          <input
+            type="text"
+            placeholder="Search.."
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <button
+            className="searchBtn"
+            type="button"
+            onClick={() => searchFilter()}
+          >
+            submit
+          </button>
+        </div>
+        <div class="box">
+          <GrLocation />
+          <select className="dropdown" value={value} onChange={handleChange}>
+            <option value="Karachi">Karachi</option>
+            <option value="Lahore">Lahore</option>
+            <option value="Islamabad">Islamabad</option>
+            <option value="">Select Location</option>
+          </select>
+        </div>
+        <div class="box">
+          <AiOutlineSearch />
+          <input type="text" placeholder="UNDER CONSTRUCTION.." />
+        </div>
       </div>
-      <span>Search:</span>
-      <input
-        type="text"
-        placeholder="SEARCH.."
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      <button type="button" onClick={() => searchFilter()}>
-        submit
-      </button>
-      <select value={value} onChange={handleChange}>
-        <option value="Karachi">Karachi</option>
-        <option value="Lahore">Lahore</option>
-        <option value="Islamabad">Islamabad</option>
-        <option value="">REMOVE FILTER</option>
-      </select>
-      <p>{`You selected ${value}`}</p>
+
       <div className="cards">
         {jobs.map((job) => (
           <div className="data-card">
