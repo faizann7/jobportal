@@ -72,9 +72,11 @@ const PostJob = () => {
     } catch (error) {
       console.log(error.response.data.message); // this is the main part. Use the response property from the error object
       error.response.data.message && setError(error.response.data.message);
+      alert(error.response.data.message);
     }
   };
-
+  console.log(type);
+  console.log(location);
   return (
     <>
       <div className="container">
@@ -91,17 +93,28 @@ const PostJob = () => {
               </div>
               <div className="input-box">
                 <span>Job Type</span>
-                <input
-                  type="text"
+                <select
+                  className="dropdown"
+                  value={type}
                   onChange={({ target }) => setType(target.value)}
-                />
+                >
+                  <option value="Full Time">Full Time</option>
+                  <option value="Part Time">Part Time</option>
+                  <option value="Freelance/Contract">Freelance/Contract</option>
+                </select>
               </div>
               <div className="input-box">
                 <span>Location</span>
-                <input
-                  type="text"
+                <select
+                  className="dropdown"
+                  value={location}
                   onChange={({ target }) => setLocation(target.value)}
-                />
+                >
+                  <option value="Karachi">Karachi</option>
+                  <option value="Lahore">Lahore</option>
+                  <option value="Islamabad">Islamabad</option>
+                  <option value="Remote">Remote</option>
+                </select>
               </div>
               <div className="input-box">
                 <span>Experience</span>

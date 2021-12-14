@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import "../Pagination/pagination.scss";
 import daraz from "../../images/daraz.png";
-
+import ClipLoader from "react-spinners/ClipLoader";
 import { AiOutlineSearch } from "react-icons/ai";
 import { GrLocation } from "react-icons/gr";
 
@@ -54,6 +54,14 @@ const Cards = () => {
   };
 
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  // useEffect(() => {
+  //   setLoading(true);
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 1000);
+  // }, []);
   const searchFilter = (s) => {
     console.log(search);
     axios
@@ -75,6 +83,10 @@ const Cards = () => {
   };
 
   useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
     console.log(value);
     const ff = (v) => {
       axios
@@ -123,43 +135,48 @@ const Cards = () => {
           <input type="text" placeholder="UNDER CONSTRUCTION.." />
         </div>
       </div>
+      {loading ? (
+        <div className="loader">
+          <ClipLoader color={"#1a75e8"} loading={loading} size={130} />
+        </div>
+      ) : (
+        <div className="cards">
+          {jobs.map((job) => (
+            <div className="data-card">
+              <div className="details">
+                <span className="l">
+                  <img src={daraz} alt={daraz} />
+                </span>
+                <span className="r">{job.user.username}</span>
+              </div>
+              <div className="job-div">
+                <h3>{job.title}</h3>
+              </div>
 
-      <div className="cards">
-        {jobs.map((job) => (
-          <div className="data-card">
-            <div className="details">
-              <span className="l">
-                <img src={daraz} alt={daraz} />
-              </span>
-              <span className="r">{job.user.username}</span>
-            </div>
-            <div className="job-div">
-              <h3>{job.title}</h3>
-            </div>
+              <div className="cat">
+                <span> {job.type}</span>
+              </div>
+              <div className="job-div">
+                <h4>{job.location}</h4>
+              </div>
+              <div className="job-div">
+                <p className="c"> {job.description}</p>
+              </div>
 
-            <div className="cat">
-              <span> {job.type}</span>
+              <div className="job-div-1">
+                {/* <input className="cardbtn-1" value="Apply" /> */}
+                <Link className="cardbtn-1" to="#">
+                  Apply
+                </Link>
+                {/* <Link to={`/jobdetails/${job._id}`}>View Job </Link> */}
+                <Link className="cardbtn-2" to={`/jobdetails/${job._id}`}>
+                  View Job{" "}
+                </Link>{" "}
+              </div>
             </div>
-            <div className="job-div">
-              <h4>{job.location}</h4>
-            </div>
-            <div className="job-div">
-              <p className="c"> {job.description}</p>
-            </div>
-
-            <div className="job-div-1">
-              {/* <input className="cardbtn-1" value="Apply" /> */}
-              <Link className="cardbtn-1" to="#">
-                Apply
-              </Link>
-              {/* <Link to={`/jobdetails/${job._id}`}>View Job </Link> */}
-              <Link className="cardbtn-2" to={`/jobdetails/${job._id}`}>
-                View Job{" "}
-              </Link>{" "}
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
       <div className="divpage">
         <ReactPaginate
           previousLabel={"Previous"}
