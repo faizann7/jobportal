@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import "./about.scss";
 import { ReactComponent as Avatar } from "../avatar.svg";
 import { Table, TableBody, TableCell, TableRow } from "@material-ui/core";
-
+import Naavbar from "../components/Naavbar";
+import { Navigate } from "react-router-dom";
 const About = () => {
   const [user, setUser] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -78,6 +79,7 @@ const About = () => {
   if (userType === "Recruiter") {
     return (
       <>
+        <Naavbar />
         <div class="container-about">
           <div class="laft">
             <Avatar className="avatar" />
@@ -170,7 +172,7 @@ const About = () => {
         </div>
       </>
     );
-  } else {
+  } else if (userType === "applicant") {
     return (
       <>
         <div class="container-about">
@@ -333,6 +335,8 @@ const About = () => {
         </div>
       </>
     );
+  } else {
+    return <Navigate to="/login" />;
   }
 };
 

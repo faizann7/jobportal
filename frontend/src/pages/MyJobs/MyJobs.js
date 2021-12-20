@@ -8,7 +8,7 @@ import {
   TableBody,
   Button,
 } from "@material-ui/core";
-
+import { Navigate } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import Modal from "../../components/Modal/Modal";
 const MyJobs = () => {
@@ -57,70 +57,75 @@ const MyJobs = () => {
         console.log(error);
       });
   };
-
-  return (
-    <div>
-      <div className="container">
-        <div className="title">My Jobs</div>
-        <div className="content-addjob">
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell align="center">Title</TableCell>
-                <TableCell align="center">Type</TableCell>
-                <TableCell align="center">Date Of Posting</TableCell>
-                <TableCell align="center">Number of Applicants</TableCell>
-                <TableCell align="center">Total Number of Positions</TableCell>
-                <TableCell align="center">Accepted Applicants</TableCell>
-                <TableCell align="center">Deadline</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {myjobs.map((job) => (
+  if (token) {
+    return (
+      <div>
+        <div className="container">
+          <div className="title">My Jobs</div>
+          <div className="content-addjob">
+            <Table>
+              <TableHead>
                 <TableRow>
-                  <TableCell align="center">{job.title}</TableCell>
-                  <TableCell align="center">{job.type}</TableCell>
-                  <TableCell align="center">{postingdate}</TableCell>
-                  <TableCell align="center">{job.numApps}</TableCell>
-                  <TableCell align="center">{job.maxPos}</TableCell>
-                  <TableCell align="center">{job.numAccepted}</TableCell>
-                  <TableCell align="center">{job.deadlineDate}</TableCell>
+                  <TableCell align="center">Title</TableCell>
+                  <TableCell align="center">Type</TableCell>
+                  <TableCell align="center">Date Of Posting</TableCell>
+                  <TableCell align="center">Number of Applicants</TableCell>
                   <TableCell align="center">
-                    <Button
-                      style={{ backgroundColor: "#6495ED", color: "#fff" }}
-                      component={Link}
-                      to={`/updatejob/${job._id}`}
-                    >
-                      Edit Job
-                    </Button>
+                    Total Number of Positions
                   </TableCell>
-                  <TableCell align="center">
-                    <Button
-                      style={{ backgroundColor: "#2D85C4", color: "#fff" }}
-                      component={Link}
-                      to={`/applications/${job._id}`}
-                    >
-                      View Applications
-                    </Button>
-                  </TableCell>
-                  <TableCell align="center">
-                    <Button
-                      onClick={() => deleteJob(job._id)}
-                      style={{ backgroundColor: "#f44336", color: "#fff" }}
-                    >
-                      Delete
-                    </Button>
-                  </TableCell>
+                  <TableCell align="center">Accepted Applicants</TableCell>
+                  <TableCell align="center">Deadline</TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHead>
+              <TableBody>
+                {myjobs.map((job) => (
+                  <TableRow>
+                    <TableCell align="center">{job.title}</TableCell>
+                    <TableCell align="center">{job.type}</TableCell>
+                    <TableCell align="center">{postingdate}</TableCell>
+                    <TableCell align="center">{job.numApps}</TableCell>
+                    <TableCell align="center">{job.maxPos}</TableCell>
+                    <TableCell align="center">{job.numAccepted}</TableCell>
+                    <TableCell align="center">{job.deadlineDate}</TableCell>
+                    <TableCell align="center">
+                      <Button
+                        style={{ backgroundColor: "#6495ED", color: "#fff" }}
+                        component={Link}
+                        to={`/updatejob/${job._id}`}
+                      >
+                        Edit Job
+                      </Button>
+                    </TableCell>
+                    <TableCell align="center">
+                      <Button
+                        style={{ backgroundColor: "#2D85C4", color: "#fff" }}
+                        component={Link}
+                        to={`/applications/${job._id}`}
+                      >
+                        View Applications
+                      </Button>
+                    </TableCell>
+                    <TableCell align="center">
+                      <Button
+                        onClick={() => deleteJob(job._id)}
+                        style={{ backgroundColor: "#f44336", color: "#fff" }}
+                      >
+                        Delete
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </div>
-      </div>
 
-      {/* <EditableJobs myjobs={myjobs}/> */}
-    </div>
-  );
+        {/* <EditableJobs myjobs={myjobs}/> */}
+      </div>
+    );
+  } else {
+    return <Navigate to="/login" />;
+  }
 };
 
 export default MyJobs;

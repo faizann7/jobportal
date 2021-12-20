@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useParams } from "react-router";
+import { Navigate } from "react-router-dom";
 
 const Apply = () => {
   const [coverLetter, setCoverLetter] = useState("");
@@ -38,24 +39,27 @@ const Apply = () => {
       return error.response;
     }
   };
+  if (token) {
+    return (
+      <>
+        <div>
+          <form onSubmit={submit}>
+            <label>Cover Letter </label>
+            <input
+              type="text"
+              onChange={({ target }) => setCoverLetter(target.value)}
+            />
 
-  return (
-    <>
-      <div>
-        <form onSubmit={submit}>
-          <label>Cover Letter </label>
-          <input
-            type="text"
-            onChange={({ target }) => setCoverLetter(target.value)}
-          />
-
-          <div class="button-login">
-            <input type="submit" value="Apply" />
-          </div>
-        </form>
-      </div>
-    </>
-  );
+            <div class="button-login">
+              <input type="submit" value="Apply" />
+            </div>
+          </form>
+        </div>
+      </>
+    );
+  } else {
+    return <Navigate to="/login" />;
+  }
 };
 
 export default Apply;

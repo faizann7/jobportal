@@ -11,7 +11,7 @@ import {
   MuiThemeProvider,
 } from "@material-ui/core";
 import "./applicationstyle.scss";
-
+import { Navigate } from "react-router-dom";
 const AcceptedEmployees = () => {
   const [data, setData] = useState([]);
 
@@ -44,51 +44,56 @@ const AcceptedEmployees = () => {
       },
     },
   });
-  return (
-    <MuiThemeProvider theme={theme}>
-      <div className="container">
-        <div className="title">Accepted Employees</div>
-        <div className="content-addjob">
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell align="center">
-                  <div>Applicant Name</div>
-                </TableCell>
-                <TableCell align="center">
-                  <div>Job Title</div>
-                </TableCell>
-                <TableCell align="center">
-                  <div>Job Type</div>
-                </TableCell>
-                <TableCell align="center">
-                  <div>Joining Date</div>
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.map((job) => (
+  let userType = localStorage.getItem("userType");
+  if (userType === "Recruiter") {
+    return (
+      <MuiThemeProvider theme={theme}>
+        <div className="container">
+          <div className="title">Accepted Employees</div>
+          <div className="content-addjob">
+            <Table>
+              <TableHead>
                 <TableRow>
                   <TableCell align="center">
-                    <div>{job.name}</div>
+                    <div>Applicant Name</div>
                   </TableCell>
                   <TableCell align="center">
-                    <div>{job.jobtitle}</div>
+                    <div>Job Title</div>
                   </TableCell>
                   <TableCell align="center">
-                    <div>{job.jobtype}</div>
+                    <div>Job Type</div>
                   </TableCell>
                   <TableCell align="center">
-                    <div>{job.joiningDate}</div>
+                    <div>Joining Date</div>
                   </TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHead>
+              <TableBody>
+                {data.map((job) => (
+                  <TableRow>
+                    <TableCell align="center">
+                      <div>{job.name}</div>
+                    </TableCell>
+                    <TableCell align="center">
+                      <div>{job.jobtitle}</div>
+                    </TableCell>
+                    <TableCell align="center">
+                      <div>{job.jobtype}</div>
+                    </TableCell>
+                    <TableCell align="center">
+                      <div>{job.joiningDate}</div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </div>
-      </div>
-    </MuiThemeProvider>
-  );
+      </MuiThemeProvider>
+    );
+  } else {
+    return <Navigate to="/login" />;
+  }
 };
 
 export default AcceptedEmployees;

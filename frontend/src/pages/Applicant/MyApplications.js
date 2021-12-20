@@ -6,22 +6,20 @@ import {
   TableCell,
   TableRow,
   TableBody,
-  Button,
 } from "@material-ui/core";
-
+import { Navigate } from "react-router-dom";
 const MyApplications = () => {
   const [data, setData] = useState([]);
 
   let userId = localStorage.getItem("userId");
-  const URL = `http://localhost:5000/api/application/byrecruiter/${userId}`;
+  const URL = `http://localhost:5000/api/application/byapplicant/${userId}`;
   useEffect(() => {
     async function getJob() {
       axios
         .get(`${URL}`)
         .then((res) => {
-          setData(res.data.applicants);
-          console.log(res.data.applicants);
-          console.log(res.data);
+          setData(res.data.applications);
+          console.log(res.data.applications);
         })
         .catch((error) => {
           console.error(`Error ${error}`);
@@ -29,51 +27,56 @@ const MyApplications = () => {
     }
     getJob();
   }, []);
-  return (
-    <>
-      <div className="container">
-        <div className="title">Accepted Employees</div>
-        <div className="content-addjob">
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell align="center">
-                  <div>Applicant Name</div>
-                </TableCell>
-                <TableCell align="center">
-                  <div>Job Title</div>
-                </TableCell>
-                <TableCell align="center">
-                  <div>Job Type</div>
-                </TableCell>
-                <TableCell align="center">
-                  <div>Joining Date</div>
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.map((job) => (
+  let userType = localStorage.getItem("userType");
+  if (userType === "applicant") {
+    return (
+      <>
+        <div className="container">
+          <div className="title">My Applications</div>
+          <div className="content-addjob">
+            <Table>
+              <TableHead>
                 <TableRow>
                   <TableCell align="center">
-                    <div>{job.name}</div>
+                    <div>Job Title</div>
                   </TableCell>
                   <TableCell align="center">
-                    <div>{job.jobtitle}</div>
+                    <div>Job Type</div>
                   </TableCell>
                   <TableCell align="center">
-                    <div>{job.jobtype}</div>
+                    <div>Company</div>
                   </TableCell>
                   <TableCell align="center">
-                    <div>{job.joiningDate}</div>
+                    <div>Status</div>
                   </TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHead>
+              <TableBody>
+                {data.map((job) => (
+                  <TableRow>
+                    <TableCell align="center">
+                      <div>{job.jobId.title}</div>
+                    </TableCell>
+                    <TableCell align="center">
+                      <div>{job.jobId.type}</div>
+                    </TableCell>
+                    <TableCell align="center">
+                      <div>{job.jobId.user.username}</div>
+                    </TableCell>
+                    <TableCell align="center">
+                      <div>{job.status}</div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  } else {
+    return <Navigate to="/login" />;
+  }
 };
 
 export default MyApplications;

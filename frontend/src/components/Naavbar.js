@@ -113,7 +113,7 @@ const Naavbar = () => {
               </li>
 
               <li>
-                <Link className="link" to="/applicantapps">
+                <Link className="link" to="/myapplications">
                   My Applications
                 </Link>
               </li>
