@@ -18,6 +18,7 @@ import AcceptedEmployees from "./pages/Recruiter/AcceptedEmployees";
 import MyApplications from "./pages/Applicant/MyApplications";
 import Naavbar from "./components/Naavbar";
 import FindJobs from "./pages/FindJobs";
+import ApplicantApp from "./pages/Applicant/ApplicantApp";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="/acceptedemployees" element={<AcceptedEmployees />} />
         <Route path="/apply/:id" element={<Apply />} />
         <Route path="/myapplications/" element={<MyApplications />} />
+        <Route path="/applicantapps/" element={<ApplicantApp />} />
       </Routes>
     </div>
   );

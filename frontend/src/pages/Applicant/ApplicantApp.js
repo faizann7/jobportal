@@ -26,32 +26,13 @@ const MyApplications = () => {
           console.error(`Error ${error}`);
         });
     }
-    getDetails();
     getJob();
   }, []);
-
-  const [details, setDetails] = useState([]);
-  const getDetails = () => {
-    axios({
-      method: "GET",
-      url: `http://localhost:5000/api/application/applicantapps/61a50be0f86ab3cd01fd5a8c`,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: data,
-    })
-      .then((response) => {
-        setDetails(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   return (
     <>
       <div className="container">
-        <div className="title">Accepted Employees</div>
+        <div className="title">My Applications</div>
         <div className="content-addjob">
           <Table>
             <TableHead>
@@ -74,13 +55,13 @@ const MyApplications = () => {
               {data.map((job) => (
                 <TableRow>
                   <TableCell align="center">
-                    <div>{job._id}</div>
+                    <div>{job.jobId.title}</div>
                   </TableCell>
                   <TableCell align="center">
-                    <div>{job.jobtitle}</div>
+                    <div>{job.jobId.type}</div>
                   </TableCell>
                   <TableCell align="center">
-                    <div>{job.jobtype}</div>
+                    <div>{job.jobId.user.username}</div>
                   </TableCell>
                   <TableCell align="center">
                     <div>{job.status}</div>

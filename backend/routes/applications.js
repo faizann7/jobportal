@@ -91,6 +91,7 @@ router.get("/byapplicant/:applicantid", (req, res) => {
   const applicantId = req.params.applicantid;
   Application.find({ applicantId: applicantId })
     .lean()
+    .populate("jobId")
     .then((applications) => res.json({ applications }))
     .catch((err) => {
       return res.sendStatus(400);
