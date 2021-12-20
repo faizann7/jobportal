@@ -7,10 +7,19 @@ import {
   TableRow,
   TableBody,
   Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  useTheme,
+  useMediaQuery,
 } from "@material-ui/core";
 import { Navigate } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import Modal from "../../components/Modal/Modal";
+//import Dialog from "../../components/Dialog";
+
 const MyJobs = () => {
   let userId = localStorage.getItem("userId");
 
@@ -56,6 +65,28 @@ const MyJobs = () => {
       .catch((error) => {
         console.log(error);
       });
+  };
+  // const [dialog, setDialog] = useState(false);
+  // const Dialog = ({ show }) => {
+  //   if (!show) {
+  //     return <></>;
+  //   }
+  //   return (
+  //     <div>
+  //       <button> DELETE </button>
+  //     </div>
+  //   );
+  // };
+  const [open, setOpen] = React.useState(false);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
   if (token) {
     return (
@@ -107,16 +138,37 @@ const MyJobs = () => {
                     </TableCell>
                     <TableCell align="center">
                       <Button
-                        onClick={() => deleteJob(job._id)}
+                        // onClick={() => deleteJob(job._id)}
+                        onClick={handleClickOpen}
                         style={{ backgroundColor: "#f44336", color: "#fff" }}
                       >
                         Delete
                       </Button>
+                      <Dialog
+                        fullScreen={fullScreen}
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="responsive-dialog-title"
+                      >
+                        <DialogTitle id="responsive-dialog-title">
+                          {"Are you sure you want to delete?"}
+                        </DialogTitle>
+
+                        <DialogActions>
+                          <Button autoFocus onClick={handleClose}>
+                            NO
+                          </Button>
+                          <Button onClick={() => deleteJob(job._id)} autoFocus>
+                            YES
+                          </Button>
+                        </DialogActions>
+                      </Dialog>
                     </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
+            {/* <Dialog show={dialog} /> */}
           </div>
         </div>
 
