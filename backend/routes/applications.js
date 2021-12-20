@@ -28,7 +28,7 @@ router.post("/apply/:id", auth, async function (req, res) {
     if (application.status === "Accepted")
       return res
         .status(400)
-        .json({ msg: "Can't apply when already accepted into a job" });
+        .json({ message: "Can't apply when already accepted into a job" });
     if (application.status !== "Deleted" || application.status !== "Rejected")
       numActive += 1;
   }
@@ -107,7 +107,7 @@ router.put("/:id", auth, async function (req, res) {
   const application = await Application.findById(id);
   if (!application) return res.sendStatus(400);
   if (application.closeDate < Date.now())
-    return res.status(400).json({ msg: "Application already closed" });
+    return res.status(400).json({ message: "Application already closed" });
 
   if (status === "Accepted") {
     const job = await Job.findById(application.jobId);
@@ -173,7 +173,7 @@ router.get("/byrecruiter/:id", async function (req, res) {
     return res.json({ applicants });
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ msg: "Internal error" });
+    return res.status(500).json({ message: "Internal error" });
   }
 });
 

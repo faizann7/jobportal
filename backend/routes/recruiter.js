@@ -182,6 +182,8 @@ router.put("/updateprofile/:id", verify, async (req, res) => {
 
 // Get a recruiter
 router.get("/:id", verify, (req, res) => {
+  console.log(req.user.id);
+  console.log(req.user.username);
   if (req.params.id === req.user.id) {
     const id = req.params.id;
     Recruiter.findById(id)

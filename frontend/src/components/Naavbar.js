@@ -37,7 +37,7 @@ const Naavbar = () => {
     return (
       <div>
         <section className="container-nav row nav">
-          <Link to="#" className="logo nav">
+          <Link to="/" className="logo nav">
             Job Portal
           </Link>
           <nav className="navigation row menulink">
@@ -45,7 +45,7 @@ const Naavbar = () => {
               <li>
                 <NavLink
                   className={({ isActive }) => (isActive ? "active" : "link")}
-                  to="/"
+                  to="/findjobs"
                 >
                   Find Jobs
                 </NavLink>
@@ -65,6 +65,7 @@ const Naavbar = () => {
                   Accepted Employees
                 </Link>
               </li>
+              <li>{user.username}</li>
               <li>
                 <Link className="nav-btn-2" to="postjob">
                   Post Job
@@ -110,12 +111,13 @@ const Naavbar = () => {
                   About
                 </Link>
               </li>
+
               <li>
-                <Link className="link" to="/login">
-                  My Jobs
+                <Link className="link" to="/applicantapps">
+                  My Applications
                 </Link>
               </li>
-
+              <li>{user.username}</li>
               <li>
                 <Link className="nav-btn-1" onClick={logout} to="#">
                   Logout

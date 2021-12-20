@@ -127,6 +127,7 @@ const Cards = () => {
             <option value="Karachi">Karachi</option>
             <option value="Lahore">Lahore</option>
             <option value="Islamabad">Islamabad</option>
+            <option value="Remote">Remote</option>
             <option value="">Select Location</option>
           </select>
         </div>
