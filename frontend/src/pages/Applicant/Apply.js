@@ -39,7 +39,8 @@ const Apply = () => {
       return error.response;
     }
   };
-  if (token) {
+  let userType = localStorage.getItem("userType");
+  if (userType === "applicant") {
     return (
       <>
         <div>

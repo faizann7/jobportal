@@ -61,7 +61,7 @@ const Naavbar = () => {
                 </Link>
               </li>
               <li>
-                <Link className="link" to="/register">
+                <Link className="link" to="/acceptedemployees">
                   Accepted Employees
                 </Link>
               </li>

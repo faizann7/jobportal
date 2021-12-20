@@ -19,8 +19,8 @@ const PostJob = () => {
   const [job, setJob] = useState(defaultFormData);
 
   const [title, setTitle] = useState("");
-  const [type, setType] = useState("");
-  const [location, setLocation] = useState("");
+  const [type, setType] = useState("Full Time");
+  const [location, setLocation] = useState("Karachi");
   const [experience, setExperience] = useState("");
   const [department, setDepartment] = useState("");
   const [description, setDescription] = useState("");

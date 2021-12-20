@@ -79,7 +79,6 @@ const About = () => {
   if (userType === "Recruiter") {
     return (
       <>
-        <Naavbar />
         <div class="container-about">
           <div class="laft">
             <Avatar className="avatar" />
