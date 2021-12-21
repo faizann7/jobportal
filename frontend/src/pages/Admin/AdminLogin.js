@@ -29,6 +29,7 @@ const AdminLogin = () => {
         console.log("USER LOGGED IN");
         localStorage.setItem("userId", response.data.user._id);
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userType", response.data.userType);
         localStorage.setItem("user", JSON.stringify(response.data.user));
         navigate("/admindashboard");
       }

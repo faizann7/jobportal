@@ -82,6 +82,7 @@ router.post("/login", async (req, res) => {
     res.json({
       message: "User Logged In Successfully!!",
       user,
+      userType: "Admin",
       token,
     });
   } catch (err) {

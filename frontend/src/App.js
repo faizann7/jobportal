@@ -17,6 +17,7 @@ import Naavbar from "./components/Naavbar";
 import FindJobs from "./pages/FindJobs";
 import AdminLogin from "./pages/Admin/AdminLogin";
 import Dashboard from "./pages/Admin/Dashboard";
+import Special from "./pages/Special";
 
 function App() {
   return (
@@ -39,6 +40,8 @@ function App() {
 
         <Route path="/adminlogin/" element={<AdminLogin />} />
         <Route path="/admindashboard/" element={<Dashboard />} />
+
+        <Route path="*" element={<Special />} />
       </Routes>
     </div>
   );

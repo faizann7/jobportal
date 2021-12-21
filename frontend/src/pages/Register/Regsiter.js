@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { ReactComponent as LoginPhoto } from "../Login/log.svg";
 
 const Regsiter = () => {
   const [username, setUsername] = useState("");
@@ -49,11 +50,13 @@ const Regsiter = () => {
 
   return (
     <>
-      <div className="container-login-screen">
-        <div className="leftside"></div>
-        <div className="container-login">
-          <div className="title-login">Register</div>
+      <div className="container-login">
+        <div className="container-leftside">
+          <LoginPhoto className="jobhunt" />
+        </div>
+        <div className="container-rightside">
           <div className="content-login">
+            <h3>Sign Up</h3>
             <form onSubmit={submit}>
               <div className="user-details-login">
                 <div className="input-box-login">
@@ -94,20 +97,22 @@ const Regsiter = () => {
                     onChange={({ target }) => setContactNumber(target.value)}
                   />
                 </div>
-                <label>Applicant</label>
-                <input
-                  type="radio"
-                  checked={userType === "applicant"}
-                  value="applicant"
-                  onChange={(e) => setUserType(e.target.value)}
-                />
-                <label>Recruiter</label>
-                <input
-                  type="radio"
-                  checked={userType === "recruiter"}
-                  value="recruiter"
-                  onChange={(e) => setUserType(e.target.value)}
-                />
+                <div className="radiobtn">
+                  <label>Applicant</label>
+                  <input
+                    type="radio"
+                    checked={userType === "applicant"}
+                    value="applicant"
+                    onChange={(e) => setUserType(e.target.value)}
+                  />
+                  <label>Recruiter</label>
+                  <input
+                    type="radio"
+                    checked={userType === "recruiter"}
+                    value="recruiter"
+                    onChange={(e) => setUserType(e.target.value)}
+                  />
+                </div>
 
                 <div class="button-login">
                   <input type="submit" value="Register" />

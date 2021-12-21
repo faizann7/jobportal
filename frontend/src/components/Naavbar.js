@@ -135,6 +135,39 @@ const Naavbar = () => {
         </section>
       </div>
     );
+  }
+  if (userType === "Admin") {
+    return (
+      <div>
+        <section className="container-nav row nav">
+          <Link to="/" className="logo nav">
+            Job Portal
+          </Link>
+          <nav className="navigation row menulink">
+            <ul class="row">
+              <li>
+                <Link className="link" to="/admindashboard">
+                  View All Jobs
+                </Link>
+              </li>
+              <li>{user.username}</li>
+              <li>
+                <Link className="nav-btn-1" onClick={logout} to="#">
+                  Logout
+                </Link>
+              </li>
+            </ul>
+          </nav>
+          <div className="toggle">
+            {!menuOpen ? (
+              <BiMenuAltRight onClick={menuToggleHandler} />
+            ) : (
+              <AiOutlineClose onClick={menuToggleHandler} />
+            )}
+          </div>
+        </section>
+      </div>
+    );
   } else {
     return (
       <div>

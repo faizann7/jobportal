@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import {
   Table,
   TableHead,
@@ -66,90 +67,98 @@ const Dashboard = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  return (
-    <>
-      <div>
-        <div className="container">
-          <div className="title">My Jobs</div>
-          <div className="content-addjob">
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell align="center">
-                    <div>Company Name</div>
-                  </TableCell>
-                  <TableCell align="center">
-                    <div>Title</div>
-                  </TableCell>
-                  <TableCell align="center">
-                    <div>Type</div>
-                  </TableCell>
-                  <TableCell align="center">
-                    <div>Number of Applicants</div>
-                  </TableCell>
-
-                  <TableCell align="center">Accepted Applicants</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {jobs.map((job) => (
+  let userType = localStorage.getItem("userType");
+  if (userType === "Admin") {
+    return (
+      <>
+        <div>
+          <div className="container">
+            <div className="title">My Jobs</div>
+            <div className="content-addjob">
+              <Table>
+                <TableHead>
                   <TableRow>
                     <TableCell align="center">
-                      <div>{job.user.username}</div>
+                      <div>Company Name</div>
                     </TableCell>
                     <TableCell align="center">
-                      <div>{job.title}</div>
+                      <div>Title</div>
                     </TableCell>
                     <TableCell align="center">
-                      <div>{job.type}</div>
+                      <div>Type</div>
                     </TableCell>
                     <TableCell align="center">
-                      <div>{job.numApps}</div>
-                    </TableCell>
-                    <TableCell align="center">
-                      <div>{job.numAccepted}</div>
+                      <div>Number of Applicants</div>
                     </TableCell>
 
-                    <TableCell align="center">
-                      <Button
-                        // onClick={() => deleteJob(job._id)}
-                        onClick={handleClickOpen}
-                        style={{ backgroundColor: "#f44336", color: "#fff" }}
-                      >
-                        REMOVE
-                      </Button>
-                      <Dialog
-                        fullScreen={fullScreen}
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="responsive-dialog-title"
-                      >
-                        <DialogTitle id="responsive-dialog-title">
-                          {"Are you sure you want to delete?"}
-                        </DialogTitle>
-
-                        <DialogActions>
-                          <Button autoFocus onClick={handleClose}>
-                            NO
-                          </Button>
-                          <Button onClick={() => deleteJob(job._id)} autoFocus>
-                            YES
-                          </Button>
-                        </DialogActions>
-                      </Dialog>
-                    </TableCell>
+                    <TableCell align="center">Accepted Applicants</TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-            {/* <Dialog show={dialog} /> */}
-          </div>
-        </div>
+                </TableHead>
+                <TableBody>
+                  {jobs.map((job) => (
+                    <TableRow>
+                      <TableCell align="center">
+                        <div>{job.user.username}</div>
+                      </TableCell>
+                      <TableCell align="center">
+                        <div>{job.title}</div>
+                      </TableCell>
+                      <TableCell align="center">
+                        <div>{job.type}</div>
+                      </TableCell>
+                      <TableCell align="center">
+                        <div>{job.numApps}</div>
+                      </TableCell>
+                      <TableCell align="center">
+                        <div>{job.numAccepted}</div>
+                      </TableCell>
 
-        {/* <EditableJobs myjobs={myjobs}/> */}
-      </div>
-    </>
-  );
+                      <TableCell align="center">
+                        <Button
+                          // onClick={() => deleteJob(job._id)}
+                          onClick={handleClickOpen}
+                          style={{ backgroundColor: "#f44336", color: "#fff" }}
+                        >
+                          REMOVE
+                        </Button>
+                        <Dialog
+                          fullScreen={fullScreen}
+                          open={open}
+                          onClose={handleClose}
+                          aria-labelledby="responsive-dialog-title"
+                        >
+                          <DialogTitle id="responsive-dialog-title">
+                            {"Are you sure you want to delete?"}
+                          </DialogTitle>
+
+                          <DialogActions>
+                            <Button autoFocus onClick={handleClose}>
+                              NO
+                            </Button>
+                            <Button
+                              onClick={() => deleteJob(job._id)}
+                              autoFocus
+                            >
+                              YES
+                            </Button>
+                          </DialogActions>
+                        </Dialog>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+              {/* <Dialog show={dialog} /> */}
+            </div>
+          </div>
+
+          {/* <EditableJobs myjobs={myjobs}/> */}
+        </div>
+      </>
+    );
+  } else {
+    return <Navigate to="/login" />;
+  }
 };
 
 export default Dashboard;

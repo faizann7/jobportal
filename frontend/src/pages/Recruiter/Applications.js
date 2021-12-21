@@ -162,7 +162,7 @@ const Applications = () => {
     } else if (status === "Shortlisted") {
       return (
         <Button
-          style={{ backgroundColor: "#00FF00", color: "#fff" }}
+          style={{ backgroundColor: "#f1bc31", color: "#fff" }}
           onClick={() => accept(i)}
         >
           Accept
@@ -177,7 +177,7 @@ const Applications = () => {
     } else
       return (
         <Button
-          style={{ backgroundColor: "#333", color: "#fff" }}
+          style={{ backgroundColor: "#f0134d", color: "#fff" }}
           onClick={() => reject(i)}
         >
           {" "}
@@ -194,6 +194,10 @@ const Applications = () => {
     } else if (status === "Shortlisted") {
       return (
         <div style={{ fontWeight: "bold", color: "#6495ED" }}>Shortlisted</div>
+      );
+    } else if (status === "Applied") {
+      return (
+        <div style={{ fontWeight: "bold", color: "#6495ED" }}>Applied</div>
       );
     } else
       return (
@@ -212,26 +216,44 @@ const Applications = () => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell align="center">Applicant Name</TableCell>
-                  <TableCell align="center">Applicant Email</TableCell>
-                  <TableCell align="center">Application Status</TableCell>
-                  <TableCell align="center">Cover Letter</TableCell>
-                  <TableCell align="center">RESUME</TableCell>
+                  <TableCell align="center">
+                    <div>Applicant Name</div>
+                  </TableCell>
+                  <TableCell align="center">
+                    <div>Applicant Email</div>
+                  </TableCell>
+                  <TableCell align="center">
+                    <div>Application Status</div>
+                  </TableCell>
+                  <TableCell align="center">
+                    <div>Cover Letter</div>
+                  </TableCell>
+                  <TableCell align="center">
+                    <div>RESUME</div>
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {applications.map((job) => (
                   <TableRow>
-                    <TableCell align="center">{job.user.username}</TableCell>
-                    <TableCell align="center">{job.user.email}</TableCell>
                     <TableCell align="center">
-                      {appStatusColor(job.status)}
+                      <div>{job.user.username}</div>
                     </TableCell>
-                    <TableCell align="center">{job.coverLetter}</TableCell>
                     <TableCell align="center">
-                      <a href={job.resume} download={job.user.username}>
-                        Download
-                      </a>
+                      <div>{job.user.email}</div>
+                    </TableCell>
+                    <TableCell align="center">
+                      <div>{appStatusColor(job.status)}</div>
+                    </TableCell>
+                    <TableCell align="center">
+                      <div>{job.coverLetter}</div>
+                    </TableCell>
+                    <TableCell align="center">
+                      <div>
+                        <a href={job.resume} download={job.user.username}>
+                          Download
+                        </a>
+                      </div>
                     </TableCell>
 
                     <TableCell align="center">
