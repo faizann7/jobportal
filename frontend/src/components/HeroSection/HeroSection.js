@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as Jobhunt } from "./jobhunt.svg";
 import "./hero.scss";
-import Pagination from "../Pagination/Pagination";
 const HeroSection = () => {
   return (
     <div>
@@ -14,12 +13,6 @@ const HeroSection = () => {
           <Link to="/findjobs" class="btn">
             Find Jobs
           </Link>
-          <div class="boxContainer">
-            <input className="searchbox" placeholder="Search" />
-            <button to="#" class="search-btn">
-              Search
-            </button>
-          </div>
         </div>
         <div class="img-body row">
           <Jobhunt className="jobhunt" />

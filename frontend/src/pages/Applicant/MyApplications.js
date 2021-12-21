@@ -52,7 +52,17 @@ const MyApplications = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {data.map((job) => (
+                <div className="row">
+                  {
+                    //Check if message failed
+                    data.length === 0 ? (
+                      <div> Something went wrong </div>
+                    ) : (
+                      <div> Everything in the world is fine </div>
+                    )
+                  }
+                </div>
+                {/* {data.map((job) => (
                   <TableRow>
                     <TableCell align="center">
                       <div>{job.jobId.title}</div>
@@ -67,7 +77,7 @@ const MyApplications = () => {
                       <div>{job.status}</div>
                     </TableCell>
                   </TableRow>
-                ))}
+                ))} */}
               </TableBody>
             </Table>
           </div>

@@ -14,6 +14,9 @@ let schema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  location: {
+    type: String,
+  },
   skills: [String],
   education: [
     {

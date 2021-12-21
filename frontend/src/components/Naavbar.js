@@ -119,7 +119,7 @@ const Naavbar = () => {
               </li>
               <li>{user.username}</li>
               <li>
-                <Link className="nav-btn-1" onClick={logout} to="#">
+                <Link className="nav-btn-1" onClick={logout} to="/">
                   Logout
                 </Link>
               </li>

@@ -36,6 +36,7 @@ router.post("/register", async (req, res) => {
     });
     newUser.skills = [];
     newUser.contactNumber = "";
+    newUser.location = "";
     const data = await newUser.save();
     res.status(201).json({ message: "User Created Successfully", data });
   } catch (err) {

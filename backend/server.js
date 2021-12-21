@@ -25,7 +25,8 @@ const PORT = process.env.PORT || 5000;
 //connecting database
 mongoose
   .connect(
-    "mongodb+srv://mfaizan:mfaizan123@cluster0.dxb1h.mongodb.net/projectwebdev?retryWrites=true&w=majority",
+    // "mongodb+srv://mfaizan:mfaizan123@cluster0.dxb1h.mongodb.net/projectwebdev?retryWrites=true&w=majority",
+    "mongodb+srv://mfaizan:mfaizan123@cluster0.dxb1h.mongodb.net/FinalDataBase?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
