@@ -15,6 +15,7 @@ const Apply = () => {
     const user = {
       applicantId: userId,
       coverLetter,
+      resume,
     };
     try {
       let response = await axios({
@@ -39,6 +40,25 @@ const Apply = () => {
       return error.response;
     }
   };
+
+  const [resume, setResume] = useState("");
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await convertToBase64(file);
+    setResume(base64);
+  };
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
   let userType = localStorage.getItem("userType");
   if (userType === "applicant") {
     return (
@@ -50,7 +70,11 @@ const Apply = () => {
               type="text"
               onChange={({ target }) => setCoverLetter(target.value)}
             />
-
+            <label>Resume</label>
+            <input
+              type="file"
+              onChange={(event) => handleFileChange(event)}
+            />{" "}
             <div class="button-login">
               <input type="submit" value="Apply" />
             </div>

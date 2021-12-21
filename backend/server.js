@@ -7,16 +7,16 @@ const applicant = require("./routes/applicant");
 const jobs = require("./routes/jobs");
 const applications = require("./routes/applications");
 const admin = require("./routes/admin");
-
+const { cloudinary } = require("./config/cloudinary");
 var pathfinderUI = require("pathfinder-ui");
 
 const app = express();
 /*assuming an express app is declared here*/
 app.use(cors());
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: "50mb" }));
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
 // const CONNECTION_URL =
 //   "mongodb+srv://mfaizan:mfaizan123@cluster0.dxb1h.mongodb.net/movieApp?retryWrites=true&w=majorityrity";

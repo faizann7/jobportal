@@ -34,6 +34,7 @@ const Regsiter = () => {
       //console.log("token",response.data.token);
       if (response.status === 200) {
         console.log("USER REGISTERED! NOW LOG IN");
+        alert("USER REGISTERED! NOW LOG IN");
         navigate("/login");
         // localStorage.setItem('userId', response.data.user._id);
         // localStorage.setItem('token', response.data.token);
@@ -41,7 +42,7 @@ const Regsiter = () => {
         // localStorage.setItem('userType', response.data.userType);
       }
     } catch (error) {
-      console.log(error.response.data.message);
+      console.log(error.response.data.msg);
       return error.response;
     }
   };

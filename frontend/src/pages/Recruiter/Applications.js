@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import {
   Table,
@@ -9,13 +10,16 @@ import {
   Button,
 } from "@material-ui/core";
 import "./applicationstyle.scss";
-import { Navigate, useNavigate, useParams } from "react-router";
-
+import { useNavigate, useParams } from "react-router";
+import { Link } from "react-router-dom";
+import Base64Downloader from "react-base64-downloader";
 const Applications = () => {
   const [applications, setApplications] = useState([]);
   let userId = localStorage.getItem("userId");
   const { id } = useParams();
   const URL = `http://localhost:5000/api/application/viewapplications/${id}`;
+
+  const [base, setBase] = useState("");
   useEffect(() => {
     async function getJob() {
       axios
@@ -23,6 +27,8 @@ const Applications = () => {
         .then((response) => {
           setApplications(response.data.applications);
           console.log(response.data);
+          //console.log(response.data.applications[0].resume);
+          var obj = JSON.stringify(response.data.applications[0].resume);
         })
         .catch((error) => {
           console.error(`Error ${error}`);
@@ -30,8 +36,10 @@ const Applications = () => {
     }
     getJob();
   }, []);
+
   let navigate = useNavigate();
   let token = localStorage.getItem("token");
+
   const ar = (a) => {
     const data = { status: "Applied" };
     axios({
@@ -193,57 +201,68 @@ const Applications = () => {
       );
   };
 
-  return (
-    <>
-      <div className="container">
-        <div className="title">My Jobs</div>
-        <div className="content-addjob">
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell align="center">Applicant Name</TableCell>
-                <TableCell align="center">Applicant Email</TableCell>
-                <TableCell align="center">Application Status</TableCell>
-                <TableCell align="center">Cover Letter</TableCell>
-                <TableCell align="center">Date of Application</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {applications.map((job) => (
+  let userType = localStorage.getItem("userType");
+
+  if (userType === "Recruiter") {
+    return (
+      <>
+        <div className="container">
+          <div className="title">My Jobs</div>
+          <div className="content-addjob">
+            <Table>
+              <TableHead>
                 <TableRow>
-                  <TableCell align="center">{job.user.username}</TableCell>
-                  <TableCell align="center">{job.user.email}</TableCell>
-                  <TableCell align="center">
-                    {appStatusColor(job.status)}
-                  </TableCell>
-                  <TableCell align="center">{job.coverLetter}</TableCell>
-                  <TableCell align="center">{job.appDate}</TableCell>
-                  <TableCell align="center">
-                    {/* <Button
+                  <TableCell align="center">Applicant Name</TableCell>
+                  <TableCell align="center">Applicant Email</TableCell>
+                  <TableCell align="center">Application Status</TableCell>
+                  <TableCell align="center">Cover Letter</TableCell>
+                  <TableCell align="center">RESUME</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {applications.map((job) => (
+                  <TableRow>
+                    <TableCell align="center">{job.user.username}</TableCell>
+                    <TableCell align="center">{job.user.email}</TableCell>
+                    <TableCell align="center">
+                      {appStatusColor(job.status)}
+                    </TableCell>
+                    <TableCell align="center">{job.coverLetter}</TableCell>
+                    <TableCell align="center">
+                      <a href={job.resume} download={job.user.username}>
+                        Download
+                      </a>
+                    </TableCell>
+
+                    <TableCell align="center">
+                      {/* <Button
                       style={{ backgroundColor: "#008CBA", color: "#fff" }}
                       onClick={() => ar(job._id)}
                     >
                       ShortList
                     </Button> */}
-                    {getBackgroundColor(job.status, job._id)}
-                  </TableCell>
-                  <TableCell align="center">
-                    {/* <Button
+                      {getBackgroundColor(job.status, job._id)}
+                    </TableCell>
+                    <TableCell align="center">
+                      {/* <Button
                       style={{ backgroundColor: "#f44336", color: "#fff" }}
                       onClick={() => reject(job._id)}
                     >
                       Reject
                     </Button> */}
-                    {rejectButton(job.status, job._id)}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+                      {rejectButton(job.status, job._id)}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  } else {
+    return <Navigate to="/login" />;
+  }
 };
 
 export default Applications;

@@ -12,7 +12,7 @@ const statuses = ["Applied", "Shortlisted", "Rejected", "Accepted"];
 //CREATE APPLICAITON -- USER USE CASE.
 router.post("/apply/:id", auth, async function (req, res) {
   const jobId = req.params.id;
-  const { applicantId, coverLetter } = req.body;
+  const { applicantId, coverLetter, resume } = req.body;
   if (!coverLetter)
     return res.status(400).json({
       message: "Please Add your Cover Letter",
@@ -57,6 +57,7 @@ router.post("/apply/:id", auth, async function (req, res) {
     jobId,
     applicantId,
     coverLetter,
+    resume,
     user: {
       id: req.user.id,
       username: req.user.username,
@@ -69,10 +70,8 @@ router.post("/apply/:id", auth, async function (req, res) {
       Job.findByIdAndUpdate(jobId, { $inc: { numApps: 1 } })
         .then(() => res.json({ application }))
         .catch((err) => res.status(500).json({ message: "Internal error" }));
-      console.log(application);
     })
     .catch((err) => res.status(500).json({ message: "Internal error" }));
-  console.log(newApplication);
 });
 
 // Get applications by jobId - RECRUITER USE CASE
