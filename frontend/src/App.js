@@ -15,6 +15,8 @@ import AcceptedEmployees from "./pages/Recruiter/AcceptedEmployees";
 import MyApplications from "./pages/Applicant/MyApplications";
 import Naavbar from "./components/Naavbar";
 import FindJobs from "./pages/FindJobs";
+import AdminLogin from "./pages/Admin/AdminLogin";
+import Dashboard from "./pages/Admin/Dashboard";
 
 function App() {
   return (
@@ -34,6 +36,9 @@ function App() {
         <Route path="/acceptedemployees" element={<AcceptedEmployees />} />
         <Route path="/apply/:id" element={<Apply />} />
         <Route path="/myapplications/" element={<MyApplications />} />
+
+        <Route path="/adminlogin/" element={<AdminLogin />} />
+        <Route path="/admindashboard/" element={<Dashboard />} />
       </Routes>
     </div>
   );

@@ -6,6 +6,7 @@ const recruiter = require("./routes/recruiter");
 const applicant = require("./routes/applicant");
 const jobs = require("./routes/jobs");
 const applications = require("./routes/applications");
+const admin = require("./routes/admin");
 
 var pathfinderUI = require("pathfinder-ui");
 
@@ -46,6 +47,7 @@ app.use("/api/recruiter", recruiter);
 app.use("/api/applicant", applicant);
 app.use("/api/jobs", jobs);
 app.use("/api/application", applications);
+app.use("/admin", admin);
 
 app.listen(PORT, () => {
   console.log(`Server started on port  http://localhost:${PORT}/`);
