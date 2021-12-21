@@ -14,13 +14,13 @@ const Naavbar = () => {
     setMenuOpen((p) => !p);
   };
 
-  const [userType, setUserType] = useState("");
+  //const [userType, setUserType] = useState("");
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    setUserType(localStorage.getItem("userType"));
+    //setUserType(localStorage.getItem("userType"));
     setUser(JSON.parse(localStorage.getItem("user")));
-    console.log(userType);
+    //console.log(userType);
     //console.log(user.username);
   }, []);
 
@@ -32,7 +32,7 @@ const Naavbar = () => {
     console.log("CLEARED AND LOGGED OUT");
     navigate("/login");
   };
-
+  let userType = localStorage.getItem("userType");
   if (userType === "Recruiter") {
     return (
       <div>
